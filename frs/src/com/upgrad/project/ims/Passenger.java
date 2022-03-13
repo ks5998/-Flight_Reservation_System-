@@ -2,15 +2,18 @@ package com.upgrad.project.ims;
 
 public class Passenger {
     int id;
-    private static int idCounter;
-    Contact passengerContact;
-    Address passengerAddress;
+    int idCounter=0;
+    private Ticket ticket;
+    private Contact contact;
+    private Address address;
 
-    public Passenger(int id, String name,String phone,String email,String street,String city,String state) {
-        idCounter++;
-        this.id = idCounter;
-        this.passengerContact = new Contact(name,phone,email);
-        this.passengerAddress = new Address(street,city,state);
+    public Passenger(int id, String name, String phone, String email, String street, String city, String state) {
+        this.id = ++idCounter;
+        this.contact = new Contact(name,phone,email);
+        this.address = new Address(street,city,state);
+    }
+    public int getId(){
+        return this.id;
     }
 
     int getPassengerCount(){
@@ -50,5 +53,11 @@ public class Passenger {
             this.state=state;
         }
 
+    }
+    public String getAddressDetails() {
+        return "Street: "+address.street+"City: "+address.city+"State: "+address.state;
+    }
+    public String getContactDetails(){
+        return "Name: "+contact.name+"Phone: "+contact.phone+"Email: "+contact.email;
     }
 }
